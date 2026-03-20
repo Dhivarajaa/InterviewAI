@@ -1,0 +1,59 @@
+@model List<InterviewAI.Models.Question>
+
+@{
+    ViewData["Title"] = "Generated Questions";
+}
+
+<div class="container">
+    <div class="alert alert-success alert-dismissible fade show">
+        <i class="bi bi-check-circle-fill"></i> Successfully generated @Model.Count questions!
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    
+    <h1 class="mb-4"><i class="bi bi-robot text-danger"></i> Generated Questions</h1>
+    
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <form asp-controller="Question" asp-action="TakeTest" method="get">
+                <input type="hidden" name="questions" value="@string.Join(",", Model.Select(q => q.Id))" />
+                <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="bi bi-play-circle"></i> Start Test with These Questions
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="row">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <div class="col-md-6 mb-3">
+                <div class="card shadow">
+                    <div class="card-header bg-light">
+                        <strong>Question @(i + 1)</strong>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">@Model[i].QuestionText</p>
+                        <div class="list-group">
+                            <div class="list-group-item"><strong>A.</strong> @Model[i].OptionA</div>
+                            <div class="list-group-item"><strong>B.</strong> @Model[i].OptionB</div>
+                            <div class="list-group-item"><strong>C.</strong> @Model[i].OptionC</div>
+                            <div class="list-group-item"><strong>D.</strong> @Model[i].OptionD</div>
+                        </div>
+                        <div class="mt-2">
+                            <span class="badge bg-success"><i class="bi bi-check"></i> Answer: @Model[i].CorrectAnswer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    
+    <div class="mt-4">
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="bi bi-plus-circle"></i> Generate More Questions
+        </a>
+        <a href="/Account/Dashboard" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Back to Dashboard
+        </a>
+    </div>
+</div>

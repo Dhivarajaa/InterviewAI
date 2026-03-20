@@ -1,0 +1,66 @@
+@model List<InterviewAI.Models.Question>
+
+@{
+    ViewData["Title"] = "Question History";
+}
+
+<div class="container">
+    <h1 class="mb-4"><i class="bi bi-clock-history"></i> Question History</h1>
+    
+    @if (Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover shadow">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Question</th>
+                        <th>Options</th>
+                        <th>Answer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        <tr>
+                            <td><strong>@(i + 1)</strong></td>
+                            <td>@Model[i].QuestionText</td>
+                            <td>
+                                <small>
+                                    <strong>A:</strong> @Model[i].OptionA<br />
+                                    <strong>B:</strong> @Model[i].OptionB<br />
+                                    <strong>C:</strong> @Model[i].OptionC<br />
+                                    <strong>D:</strong> @Model[i].OptionD
+                                </small>
+                            </td>
+                            <td><span class="badge bg-success">@Model[i].CorrectAnswer</span></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="card bg-light">
+            <div class="card-body">
+                <strong>Total Questions:</strong> @Model.Count
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <h4><i class="bi bi-info-circle"></i> No Questions Generated Yet</h4>
+            <p>Start by generating questions using the AI Question Generator.</p>
+            <a asp-action="Index" class="btn btn-primary">Generate Questions</a>
+        </div>
+    }
+    
+    <div class="mt-4">
+        <a asp-action="Index" class="btn btn-danger">
+            <i class="bi bi-magic"></i> Generate New Questions
+        </a>
+        <a href="/Account/Dashboard" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Back to Dashboard
+        </a>
+    </div>
+</div>

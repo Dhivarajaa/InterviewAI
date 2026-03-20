@@ -1,0 +1,66 @@
+@model InterviewAI.Models.Question
+
+@{
+    ViewData["Title"] = "Edit Question";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="bi bi-pencil"></i> Edit Question</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit" method="post">
+                        <input type="hidden" name="Id" value="@Model.Id" />
+
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Question Text</strong></label>
+                            <textarea name="QuestionText" class="form-control" rows="3" required>@Model.QuestionText</textarea>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label"><strong>Option A</strong></label>
+                                <input type="text" name="OptionA" class="form-control" required value="@Model.OptionA">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label"><strong>Option B</strong></label>
+                                <input type="text" name="OptionB" class="form-control" required value="@Model.OptionB">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label"><strong>Option C</strong></label>
+                                <input type="text" name="OptionC" class="form-control" required value="@Model.OptionC">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label"><strong>Option D</strong></label>
+                                <input type="text" name="OptionD" class="form-control" required value="@Model.OptionD">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Correct Answer</strong></label>
+                            <select name="CorrectAnswer" class="form-select" required>
+                                <option value="A" selected="@(Model.CorrectAnswer == "A")">A</option>
+                                <option value="B" selected="@(Model.CorrectAnswer == "B")">B</option>
+                                <option value="C" selected="@(Model.CorrectAnswer == "C")">C</option>
+                                <option value="D" selected="@(Model.CorrectAnswer == "D")">D</option>
+                            </select>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="/Question/Manage" class="btn btn-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save"></i> Update Question
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

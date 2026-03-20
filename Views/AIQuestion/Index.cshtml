@@ -1,0 +1,80 @@
+@{
+    ViewData["Title"] = "AI Question Generator";
+}
+
+<div class="container">
+    <h1 class="mb-4"><i class="bi bi-robot text-danger"></i> AI Question Generator</h1>
+    
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0"><i class="bi bi-magic"></i> Generate Interview Questions</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Generate" method="post">
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Domain</strong></label>
+                            <select name="domain" class="form-select" required>
+                                <option value="">Select a domain</option>
+                                <option value="C#">C# (.NET, ASP.NET)</option>
+                                <option value="AI">AI (Machine Learning)</option>
+                                <option value="DBMS">DBMS (SQL, Databases)</option>
+                                <option value="JavaScript">JavaScript</option>
+                                <option value="Python">Python</option>
+                                <option value="Java">Java</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Difficulty Level</strong></label>
+                            <select name="difficulty" class="form-select" required>
+                                <option value="">Select difficulty</option>
+                                <option value="Easy">Easy</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Hard">Hard</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Keywords (Optional)</strong></label>
+                            <input type="text" name="keywords" class="form-control" placeholder="e.g., async, LINQ, Entity Framework">
+                            <small class="text-muted">Separate keywords with commas</small>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-danger btn-lg w-100">
+                            <i class="bi bi-magic"></i> Generate Questions
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card bg-light shadow">
+                <div class="card-header">
+                    <h5 class="mb-0">Available Domains</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><i class="bi bi-check-circle text-success me-2"></i> C# (.NET, ASP.NET)</li>
+                        <li class="list-group-item"><i class="bi bi-check-circle text-success me-2"></i> AI (Machine Learning)</li>
+                        <li class="list-group-item"><i class="bi bi-check-circle text-success me-2"></i> DBMS (SQL, Databases)</li>
+                        <li class="list-group-item"><i class="bi bi-check-circle text-success me-2"></i> JavaScript</li>
+                        <li class="list-group-item"><i class="bi bi-check-circle text-success me-2"></i> Python</li>
+                        <li class="list-group-item"><i class="bi bi-check-circle text-success me-2"></i> Java</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mt-4">
+        <a asp-action="History" class="btn btn-secondary">
+            <i class="bi bi-clock-history"></i> View Generated History
+        </a>
+        <a href="/Account/Dashboard" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Back to Dashboard
+        </a>
+    </div>
+</div>

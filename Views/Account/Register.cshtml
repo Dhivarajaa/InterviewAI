@@ -1,0 +1,56 @@
+@model InterviewAI.Models.User
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-header bg-success text-white text-center">
+                    <h3 class="mb-0"><i class="bi bi-person-plus me-2"></i>Register</h3>
+                </div>
+                <div class="card-body">
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success">
+                            <i class="bi bi-check-circle me-2"></i> @TempData["Success"]
+                        </div>
+                    }
+                    
+                    <form asp-action="Register" method="post">
+                        <div class="mb-4">
+                            <label class="form-label"><i class="bi bi-person me-2"></i>Name</label>
+                            <input asp-for="Name" class="form-control form-control-lg" placeholder="Enter your name" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label"><i class="bi bi-envelope me-2"></i>Email</label>
+                            <input asp-for="Email" class="form-control form-control-lg" placeholder="Enter your email" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label"><i class="bi bi-lock me-2"></i>Password</label>
+                            <input asp-for="PasswordHash" type="password" class="form-control form-control-lg" placeholder="Enter your password" />
+                            <span asp-validation-for="PasswordHash" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="bi bi-person-plus me-2"></i> Register
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <hr class="my-4" />
+                    
+                    <div class="text-center">
+                        <p class="mb-0">Already have an account?</p>
+                        <a href="/Account/Login" class="btn btn-outline-primary">
+                            <i class="bi bi-box-arrow-in-right me-2"></i> Go to Login
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

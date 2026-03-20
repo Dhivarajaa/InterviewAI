@@ -1,0 +1,50 @@
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+
+<div class="container">
+    <div class="card shadow">
+        <div class="card-header bg-success text-white">
+            <h4 class="mb-0"><i class="bi bi-shield-lock me-2"></i>Privacy Policy</h4>
+        </div>
+        <div class="card-body">
+            <h5><i class="bi bi-info-circle me-2 text-primary"></i>Introduction</h5>
+            <p>InterviewAI is committed to protecting your personal information. This privacy policy explains how we collect, use, and safeguard your data.</p>
+            
+            <hr />
+            
+            <h5><i class="bi bi-database me-2 text-primary"></i>Data We Collect</h5>
+            <ul class="list-group mb-3">
+                <li class="list-group-item"><i class="bi bi-check-circle text-success me-2"></i>Name and email address (registration)</li>
+                <li class="list-group-item"><i class="bi bi-check-circle text-success me-2"></i>Test responses and scores</li>
+                <li class="list-group-item"><i class="bi bi-check-circle text-success me-2"></i>Usage data and preferences</li>
+            </ul>
+            
+            <hr />
+            
+            <h5><i class="bi bi-lock me-2 text-primary"></i>How We Protect Your Data</h5>
+            <p>Your passwords are securely hashed using industry-standard encryption (BCrypt). We never store plain-text passwords.</p>
+            
+            <hr />
+            
+            <h5><i class="bi bi-eye-slash me-2 text-primary"></i>Data Sharing</h5>
+            <p>We do not share your personal information with third parties. Your data is used solely for the purpose of providing interview preparation services.</p>
+            
+            <hr />
+            
+            <h5><i class="bi bi-envelope me-2 text-primary"></i>Contact Us</h5>
+            <p>If you have any questions about this privacy policy, please contact us through our contact form on the homepage.</p>
+            
+            <div class="alert alert-info mt-4">
+                <i class="bi bi-calendar-check me-2"></i>
+                <strong>Last Updated:</strong> @DateTime.Now.ToString("MMMM dd, yyyy")
+            </div>
+        </div>
+    </div>
+    
+    <div class="mt-3">
+        <a href="/" class="btn btn-secondary">
+            <i class="bi bi-arrow-left me-2"></i>Back to Home
+        </a>
+    </div>
+</div>

@@ -1,0 +1,116 @@
+@model List<InterviewAI.Models.Question>
+
+@{
+    ViewData["Title"] = "Take Test";
+}
+
+@if (ViewBag.NoQuestions == true)
+{
+    <div class="alert alert-warning">
+        <h4><i class="bi bi-exclamation-triangle"></i> No Questions Available</h4>
+        <p>There are no questions in the database yet. Please ask an admin to add questions.</p>
+        <a href="/Account/Dashboard" class="btn btn-primary">Back to Dashboard</a>
+    </div>
+}
+else
+{
+    <div class="row mb-3">
+        <div class="col-md-8">
+            <h2><i class="bi bi-clipboard-check"></i> Interview Test</h2>
+        </div>
+        <div class="col-md-4 text-end">
+            <div class="card bg-primary text-white">
+                <div class="card-body text-center py-2">
+                    <h4 class="mb-0"><i class="bi bi-clock"></i> Time Left: <span id="timer">@((ViewBag.Timer as string) ?? "10:00")</span></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-body">
+            <span class="badge bg-info">Total Questions: @Model.Count</span>
+            <span class="badge bg-secondary ms-2">Passing Score: 50%</span>
+        </div>
+    </div>
+
+    <form asp-action="TakeTest" method="post" id="testForm">
+        @{ var questionIndex = 0; }
+        @foreach (var question in Model)
+        {
+            <input type="hidden" name="questionIds" value="@question.Id" />
+            
+            <div class="card mb-3">
+                <div class="card-header bg-light">
+                    <strong>Question @(questionIndex + 1)</strong>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">@question.QuestionText</h5>
+                    
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="answers[@questionIndex]" id="q@(questionIndex)a" value="A" required>
+                        <label class="form-check-label" for="q@(questionIndex)a">
+                            <strong>A.</strong> @question.OptionA
+                        </label>
+                    </div>
+                    
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="answers[@questionIndex]" id="q@(questionIndex)b" value="B">
+                        <label class="form-check-label" for="q@(questionIndex)b">
+                            <strong>B.</strong> @question.OptionB
+                        </label>
+                    </div>
+                    
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="answers[@questionIndex]" id="q@(questionIndex)c" value="C">
+                        <label class="form-check-label" for="q@(questionIndex)c">
+                            <strong>C.</strong> @question.OptionC
+                        </label>
+                    </div>
+                    
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="answers[@questionIndex]" id="q@(questionIndex)d" value="D">
+                        <label class="form-check-label" for="q@(questionIndex)d">
+                            <strong>D.</strong> @question.OptionD
+                        </label>
+                    </div>
+                </div>
+            </div>
+            questionIndex++;
+        }
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="/Account/Dashboard" class="btn btn-secondary me-md-2">Cancel</a>
+            <button type="submit" class="btn btn-primary btn-lg">
+                <i class="bi bi-send"></i> Submit Test
+            </button>
+        </div>
+    </form>
+}
+
+@section Scripts {
+    <script>
+        // Timer countdown
+        var timeInSeconds = 600; // 10 minutes
+        var timerInterval;
+
+        function startTimer() {
+            timerInterval = setInterval(function() {
+                timeInSeconds--;
+                var minutes = Math.floor(timeInSeconds / 60);
+                var seconds = timeInSeconds % 60;
+                document.getElementById('timer').textContent = 
+                    (minutes < 10 ? '0' : '') + minutes + ':' + 
+                    (seconds < 10 ? '0' : '') + seconds;
+                
+                if (timeInSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    alert('Time is up! Your test will be submitted.');
+                    document.getElementById('testForm').submit();
+                }
+            }, 1000);
+        }
+
+        startTimer();
+    </script>
+}

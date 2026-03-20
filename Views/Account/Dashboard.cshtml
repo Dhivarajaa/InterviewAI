@@ -1,0 +1,87 @@
+@model InterviewAI.Models.User
+<h2>Welcome, @Model.Name (@Model.Role)</h2>
+<h2>Welcome to InterviewAI Dashboard</h2>
+
+<hr />
+
+<div>
+    <h3>Quick Actions</h3>
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="card border-primary">
+                <div class="card-body text-center">
+                    <i class="bi bi-list-check display-4 text-primary"></i>
+                    <h5 class="mt-2">Take Test</h5>
+                    <a href="/Question/TakeTest" class="btn btn-sm btn-primary">Start Quiz</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card border-secondary">
+                <div class="card-body text-center">
+                    <i class="bi bi-clock-history display-4 text-secondary"></i>
+                    <h5 class="mt-2">History</h5>
+                    <a href="/Question/History" class="btn btn-sm btn-secondary">View History</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.Role != null && Model.Role.ToLower() == "admin")
+    {
+        <hr />
+        <h4>Admin Panel</h4>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="card border-danger">
+                    <div class="card-body text-center">
+                        <i class="bi bi-robot display-4 text-danger"></i>
+                        <h5 class="mt-2">AI Question Generator</h5>
+                        <a href="/AIQuestion/Index" class="btn btn-sm btn-danger">Generate</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card border-warning">
+                    <div class="card-body text-center">
+                        <i class="bi bi-gear display-4 text-warning"></i>
+                        <h5 class="mt-2">Manage Questions</h5>
+                        <a href="/Question/Manage" class="btn btn-sm btn-warning">Manage</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card border-success">
+                    <div class="card-body text-center">
+                        <i class="bi bi-trophy display-4 text-success"></i>
+                        <h5 class="mt-2">Leaderboard</h5>
+                        <a href="/Question/Leaderboard" class="btn btn-sm btn-success">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <div class="card border-info">
+                    <div class="card-body text-center">
+                        <i class="bi bi-people display-4 text-info"></i>
+                        <h5 class="mt-2">View Users</h5>
+                        <a href="/Account/Users" class="btn btn-sm btn-info">Users</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="card border-primary">
+                    <div class="card-body text-center">
+                        <i class="bi bi-plus-circle display-4 text-primary"></i>
+                        <h5 class="mt-2">Add Question</h5>
+                        <a href="/Question/Add" class="btn btn-sm btn-primary">Add</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="mt-3">
+    <a href="/Account/Logout" class="btn btn-danger">Logout</a>
+</div>

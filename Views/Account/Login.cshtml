@@ -1,0 +1,48 @@
+@model InterviewAI.Models.User
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3 class="mb-0"><i class="bi bi-person-circle me-2"></i>Login</h3>
+                </div>
+                <div class="card-body">
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger">
+                            <i class="bi bi-exclamation-triangle me-2"></i> @ViewBag.Error
+                        </div>
+                    }
+                    
+                    <form method="post" action="/Account/Login">
+                        <div class="mb-4">
+                            <label class="form-label"><i class="bi bi-envelope me-2"></i>Email</label>
+                            <input name="Email" class="form-control form-control-lg" value="@Model?.Email" placeholder="Enter your email" required />
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label"><i class="bi bi-lock me-2"></i>Password</label>
+                            <input name="PasswordHash" type="password" class="form-control form-control-lg" placeholder="Enter your password" required />
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-box-arrow-in-right me-2"></i> Login
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <hr class="my-4" />
+                    
+                    <div class="text-center">
+                        <p class="mb-0">Don't have an account?</p>
+                        <a href="/Account/Register" class="btn btn-outline-primary">
+                            <i class="bi bi-person-plus me-2"></i> Go to Register
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
