@@ -54,8 +54,6 @@ public IActionResult Register(User user)
         [HttpPost]
         public IActionResult Login(User user)
         {
-            ViewBag.Debug = $"Email: '{user.Email}', Password length: {user.PasswordHash?.Length ?? 0}";
-            
             try
             {
                 if (string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.PasswordHash))
@@ -67,8 +65,6 @@ public IActionResult Register(User user)
                 var usersWithEmail = _context.Users
                     .Where(u => u.Email.ToLower() == user.Email.ToLower())
                     .ToList();
-
-                ViewBag.Debug += $", Users found: {usersWithEmail.Count}";
 
                 if (usersWithEmail.Count == 0)
                 {
